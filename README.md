@@ -94,7 +94,7 @@ tar czf webcalendar-backup.tar.gz ./webcalendar-data ./webcalendar-includes
 ## License
 
 WebCalendar itself is licensed under the
-[GNU GPL v2.0](https://github.com/craigk5n/webcalendar/blob/master/LICENSE.md).
+[GNU GPL v2.0](./LICENSE).
 This repo's Dockerfile and Compose config are also GPL-2.0 to match.
 
 ## Credits
