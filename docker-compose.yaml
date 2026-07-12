@@ -1,10 +1,13 @@
 services:
   webcalendar:
+    # Defaults to the prebuilt multi-arch image from GHCR. Run with
+    # `docker compose up -d --build` to build locally instead (e.g. if
+    # you changed WEBCALENDAR_REF and want a custom build).
+    image: ghcr.io/mysterhawk/webcalendar-docker:latest
     build:
       context: .
       args:
         WEBCALENDAR_REF: "v1.9.19"
-    image: webcalendar:v1.9.19-sqlite
     container_name: webcalendar
     restart: unless-stopped
     ports:

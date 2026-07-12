@@ -1,5 +1,7 @@
 # WebCalendar Docker (SQLite, built from git)
 
+[![Build and Publish Docker Image](https://github.com/MysterHawk/webcalendar-docker/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/MysterHawk/webcalendar-docker/actions/workflows/docker-publish.yml)
+
 Unofficial Docker setup for [WebCalendar](https://github.com/craigk5n/webcalendar),
 a self-hosted PHP calendar app. **Not affiliated with the upstream project.**
 
@@ -20,15 +22,33 @@ approach (classic `includes/settings.php`-based install wizard).
 
 ## Run it
 
+**Option 1 — use the prebuilt image (fastest)**
+
+A multi-arch image (amd64 + arm64) is built and published automatically
+via GitHub Actions to GHCR. Pull it directly instead of building locally:
+
+```bash
+docker pull ghcr.io/mysterhawk/webcalendar-docker:latest
+docker compose up -d
+```
+
+Available tags: `latest` (tracks `main`), `X.Y.Z` / `X.Y` for tagged
+releases, and `nightly` (weekly scheduled rebuild — picks up upstream
+patches to the pinned git ref and base-image security updates). See the
+[Packages](https://github.com/MysterHawk/webcalendar-docker/pkgs/container/webcalendar-docker)
+page for the full list.
+
+**Option 2 — build it yourself**
+
 ```bash
 docker compose up -d --build
 ```
 
-Open **http://localhost:8080** — you'll land on WebCalendar's install
+Open **http://localhost:8086** — you'll land on WebCalendar's install
 wizard.
 
 - On the database step, choose **SQLite3**.
-- For the database path, use `localhost`
+- For the database path, use `localhost` it basically uses the correct path in the background.
 - Complete the remaining steps (install password, create tables, create
   the admin account).
 - **Do not enable "single user mode" in the wizard.** There's an upstream
