@@ -25,18 +25,31 @@ approach (classic `includes/settings.php`-based install wizard).
 **Option 1 — use the prebuilt image (fastest)**
 
 A multi-arch image (amd64 + arm64) is built and published automatically
-via GitHub Actions to GHCR. Pull it directly instead of building locally:
+via GitHub Actions to GHCR. Grab the `docker-compose.yml` from this repo (it already points at the prebuilt
+image) and run it:
 
 ```bash
-docker pull ghcr.io/mysterhawk/webcalendar-docker:latest
+curl -O https://raw.githubusercontent.com/MysterHawk/webcalendar-docker/main/docker-compose.yml
 docker compose up -d
 ```
 
+Or clone the repo and skip straight to up -d without --build:
+
+```bash
+git clone https://github.com/MysterHawk/webcalendar-docker.git
+cd webcalendar-docker
+docker compose up -d
+```
+Either way, Compose will pull `ghcr.io/mysterhawk/webcalendar-docker:latest`
+instead of building it, and set up the bind-mounted `data/` and `includes/`
+folders for you automatically.
+
 Available tags: `latest` (tracks `main`), `X.Y.Z` / `X.Y` for tagged
 releases, and `nightly` (weekly scheduled rebuild — picks up upstream
-patches to the pinned git ref and base-image security updates). See the
-[Packages](https://github.com/MysterHawk/webcalendar-docker/pkgs/container/webcalendar-docker)
-page for the full list.
+patches to the pinned git ref and base-image security updates). To pin a
+specific tag instead of `latest`, edit the image: line in
+`docker-compose.yml`. See the
+[Packages page](https://github.com/MysterHawk/webcalendar-docker/pkgs/container/webcalendar-docker) for the full list.
 
 **Option 2 — build it yourself**
 
@@ -44,7 +57,7 @@ page for the full list.
 docker compose up -d --build
 ```
 
-Open **http://localhost:8086** — you'll land on WebCalendar's install
+Open **http://localhost:8080** — you'll land on WebCalendar's install
 wizard.
 
 - On the database step, choose **SQLite3**.
