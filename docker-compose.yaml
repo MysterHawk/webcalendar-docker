@@ -1,0 +1,18 @@
+services:
+  webcalendar:
+    build:
+      context: .
+      args:
+        WEBCALENDAR_REF: "v1.9.19"
+    image: webcalendar:v1.9.19-sqlite
+    container_name: webcalendar
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Persists the sqlite database file across rebuilds/recreation.
+      - ./webcalendar-data:/var/www/html/data
+      # Persists includes/settings.php (written by the install wizard) —
+      # Docker seeds this volume with the image's own includes/ content on
+      # first use, so all the app's other includes/*.php files stay intact.
+      - ./webcalendar-includes:/var/www/html/includes
