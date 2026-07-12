@@ -5,13 +5,6 @@
 Unofficial Docker setup for [WebCalendar](https://github.com/craigk5n/webcalendar),
 a self-hosted PHP calendar app. **Not affiliated with the upstream project.**
 
-![Welcoming page of the setup](screenshots/1.png)
-Setup page
-![Welcoming page of the setup](screenshots/11.png)
-View of the week
-(for more screenshots see [screenshot folder](./screenshots))
-
-
 Upstream's own Docker setups (`docker/docker-compose-php8.yml` and
 `docker/docker-compose-php8-dev.yml`) use MariaDB or PostgreSQL. This repo
 swaps that for SQLite3, so there's no separate database container to
@@ -26,6 +19,16 @@ since `v1.9.14`, so cloning sidesteps the problem entirely.
 
 Mirrors upstream's [`docker/Dockerfile-php8`](https://github.com/craigk5n/webcalendar/blob/master/docker/Dockerfile-php8)
 approach (classic `includes/settings.php`-based install wizard).
+
+## Screenshots:
+
+![Welcoming page of the setup](screenshots/1.png)
+**Setup page**
+
+![Welcoming page of the setup](screenshots/11.png)
+**View of the week**
+
+(for more screenshots see [screenshot folder](./screenshots))
 
 ## Run it
 
